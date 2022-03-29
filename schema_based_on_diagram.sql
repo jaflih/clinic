@@ -27,3 +27,19 @@ ALTER TABLE invoices
 ADD CONSTRAINT medical_histories_constraint 
 FOREIGN KEY(medical_history_id) REFERENCES medical_histories(id);
 
+CREATE TABLE invoice_items (
+id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+unit_price DECIMAL,
+quantity INT,
+total_price DECIMAL,
+invoice_id INT,
+treatment_id INT );
+
+ALTER TABLE invoice_items ADD CONSTRAINT id_invoice_fk FOREIGN KEY (invoice_id) REFERENCES invoices(id); 
+
+CREATE TABLE treatments(
+id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+type VARCHAR(225),
+name VARCHAR(225));
+
+ALTER TABLE invoice_items ADD CONSTRAINT id_treatment_fk FOREIGN KEY (treatment_id) REFERENCES treatments(id); 
