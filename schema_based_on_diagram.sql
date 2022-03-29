@@ -43,3 +43,12 @@ type VARCHAR(225),
 name VARCHAR(225));
 
 ALTER TABLE invoice_items ADD CONSTRAINT id_treatment_fk FOREIGN KEY (treatment_id) REFERENCES treatments(id); 
+
+CREATE TABLE medicalhistories_treatments(
+	id_medical_history INT REFERENCES medical_histories(id),
+	id_treatments INT REFERENCES treatments(id)
+);
+
+ALTER TABLE medicalhistories_treatments 
+ADD CONSTRAINT medicalhistories_treatments_constraint 
+PRIMARY KEY(id_medical_history,id_treatments);
